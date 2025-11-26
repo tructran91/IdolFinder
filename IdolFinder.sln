@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolFinder.CrawData", "IdolFinder.CrawData\IdolFinder.CrawData.csproj", "{4C32ABB1-F69D-412E-AD12-E7F3E30DE6C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolFinder.API", "IdolFinder.API\IdolFinder.API.csproj", "{EAFB19A6-CB97-40EA-AECD-A04A546BE68B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolFinder.Application", "IdolFinder.Application\IdolFinder.Application.csproj", "{25FD93AE-A8BF-411E-ADE0-6BDC061F4B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolFinder.Core", "IdolFinder.Core\IdolFinder.Core.csproj", "{A494F6FA-5AF5-445C-B1BD-19B2C82ABD4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdolFinder.Infrastructure", "IdolFinder.Infrastructure\IdolFinder.Infrastructure.csproj", "{EFE7365E-4211-482E-97A9-560868A323A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C32ABB1-F69D-412E-AD12-E7F3E30DE6C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C32ABB1-F69D-412E-AD12-E7F3E30DE6C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C32ABB1-F69D-412E-AD12-E7F3E30DE6C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C32ABB1-F69D-412E-AD12-E7F3E30DE6C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAFB19A6-CB97-40EA-AECD-A04A546BE68B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAFB19A6-CB97-40EA-AECD-A04A546BE68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAFB19A6-CB97-40EA-AECD-A04A546BE68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAFB19A6-CB97-40EA-AECD-A04A546BE68B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25FD93AE-A8BF-411E-ADE0-6BDC061F4B6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25FD93AE-A8BF-411E-ADE0-6BDC061F4B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25FD93AE-A8BF-411E-ADE0-6BDC061F4B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25FD93AE-A8BF-411E-ADE0-6BDC061F4B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A494F6FA-5AF5-445C-B1BD-19B2C82ABD4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A494F6FA-5AF5-445C-B1BD-19B2C82ABD4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A494F6FA-5AF5-445C-B1BD-19B2C82ABD4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A494F6FA-5AF5-445C-B1BD-19B2C82ABD4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFE7365E-4211-482E-97A9-560868A323A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE7365E-4211-482E-97A9-560868A323A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE7365E-4211-482E-97A9-560868A323A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE7365E-4211-482E-97A9-560868A323A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

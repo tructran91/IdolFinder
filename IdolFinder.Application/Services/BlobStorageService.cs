@@ -1,7 +1,8 @@
 ﻿using Azure.Storage.Blobs;
 using IdolFinder.CrawData.Services;
+using Microsoft.Extensions.Configuration;
 
-namespace IdolFinder.CrawData.Infrastructure.Storage
+namespace IdolFinder.Application.Services
 {
     public class BlobStorageService : IStorageService
     {

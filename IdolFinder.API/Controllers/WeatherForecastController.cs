@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace IdolFinder.CrawData.Controllers
+namespace IdolFinder.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,6 +1,8 @@
 ﻿using IdolFinder.CrawData.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
-namespace IdolFinder.CrawData.Infrastructure.Storage
+namespace IdolFinder.Application.Services
 {
     public class LocalStorageService : IStorageService
     {

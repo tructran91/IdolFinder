@@ -1,4 +1,4 @@
-namespace IdolFinder.CrawData
+namespace IdolFinder.API
 {
     public class WeatherForecast
     {
