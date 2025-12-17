@@ -2,8 +2,8 @@
 {
     public interface IStorageService
     {
-        Task<string> SaveFileAsync(string fileName, byte[] data);
-        Task<bool> DeleteFileAsync(string fileName);
-        Task<Stream?> GetFileAsync(string fileName);
+        Task<string> SaveFileAsync(string folderName, string fileName, byte[] data);
+        Task<bool> DeleteFileAsync(string folderName, string fileName);
+        Task<Stream?> GetFileAsync(string folderName, string fileName);
     }
 }

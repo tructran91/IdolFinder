@@ -1,32 +1,38 @@
-﻿using IdolFinder.CrawData.Services;
-using Microsoft.Extensions.Configuration;
+﻿using IdolFinder.Application.Configurations.Options;
+using IdolFinder.CrawData.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace IdolFinder.Application.Services
 {
     public class LocalStorageService : IStorageService
     {
-        private readonly string _baseFolder;
+        private readonly StorageOptions _options;
         private readonly ILogger<LocalStorageService> _logger;
 
-        public LocalStorageService(IConfiguration config, ILogger<LocalStorageService> logger)
+        public LocalStorageService(
+            IOptions<StorageOptions> options,
+            ILogger<LocalStorageService> logger)
         {
+            _options = options.Value;
             _logger = logger;
-            _baseFolder = config["Storage:ImageFolder"] ?? "D:\\IdolFinderData\\Images";
-            Directory.CreateDirectory(_baseFolder);
         }
 
-        public async Task<string> SaveFileAsync(string fileName, byte[] data)
+        public async Task<string> SaveFileAsync(string folderName, string fileName, byte[] data)
         {
-            string fullPath = Path.Combine(_baseFolder, fileName);
+            string folderPath = Path.Combine(_options.ImageFolder, folderName);
+            Directory.CreateDirectory(folderPath);
+            string fullPath = Path.Combine(folderPath, fileName);
+
             await File.WriteAllBytesAsync(fullPath, data);
-            _logger.LogInformation("Saved file: {path}", fullPath);
+            _logger.LogInformation($"Saved file: {fullPath}");
+
             return fullPath;
         }
 
-        public Task<bool> DeleteFileAsync(string fileName)
+        public Task<bool> DeleteFileAsync(string folderName, string fileName)
         {
-            string fullPath = Path.Combine(_baseFolder, fileName);
+            string fullPath = Path.Combine(_options.ImageFolder, folderName, fileName);
             if (File.Exists(fullPath))
             {
                 File.Delete(fullPath);
@@ -35,9 +41,9 @@ namespace IdolFinder.Application.Services
             return Task.FromResult(false);
         }
 
-        public Task<Stream?> GetFileAsync(string fileName)
+        public Task<Stream?> GetFileAsync(string folderName, string fileName)
         {
-            string fullPath = Path.Combine(_baseFolder, fileName);
+            string fullPath = Path.Combine(_options.ImageFolder, folderName, fileName);
             if (!File.Exists(fullPath))
                 return Task.FromResult<Stream?>(null);
 

@@ -2,6 +2,8 @@
 using IdolFinder.API.Middlewares;
 using IdolFinder.Application;
 using IdolFinder.Application.Behaviors;
+using IdolFinder.Application.Configurations.Options;
+using IdolFinder.Application.Images.Endpoints;
 using IdolFinder.Application.Services;
 using IdolFinder.Core.Repositories;
 using IdolFinder.CrawData.Services;
@@ -9,6 +11,7 @@ using IdolFinder.Infrastructure.Data;
 using IdolFinder.Infrastructure.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Reflection;
 
 namespace IdolFinder.API.Extensions
@@ -38,24 +41,29 @@ namespace IdolFinder.API.Extensions
 
         public static void RegisterApplicationLayers(this WebApplicationBuilder builder)
         {
-            builder.Services.AddApplicationServices();
+            builder.Services.AddApplicationServices(builder.Configuration);
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddThirdPartyServices(typeof(AssemblyReference).Assembly);
         }
 
-        public static void AddApplicationServices(this IServiceCollection services)
+        public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IStorageService>(provider =>
             {
-                var config = provider.GetRequiredService<IConfiguration>();
-                var storageType = config["Storage:Type"] ?? "Local";
+                var options = provider.GetRequiredService<IOptions<StorageOptions>>().Value;
 
-                return storageType.ToLower() switch
+                return options.Type?.ToLower() switch
                 {
-                    "blob" => new BlobStorageService(config),
-                    _ => new LocalStorageService(config, provider.GetRequiredService<ILogger<LocalStorageService>>())
+                    "blob" => ActivatorUtilities.CreateInstance<BlobStorageService>(provider),
+                    _ => ActivatorUtilities.CreateInstance<LocalStorageService>(provider)
                 };
             });
+
+            services.Configure<ImageSourceOptions>(configuration.GetSection("ImageSource"));
+            services.Configure<StorageOptions>(configuration.GetSection("Storage"));
+
+            services.AddScoped<LockettsEndpointHandler>();
+            services.AddScoped<AbcEndpointHandler>();
         }
 
         public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
