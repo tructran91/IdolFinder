@@ -2,7 +2,7 @@
 {
     public static class EndpointName
     {
-        public const string Locketts = "Locketts";
+        public const string JAVpics = "JAVpics";
         public const string Abc = "Abc";
     }
 }

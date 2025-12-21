@@ -3,7 +3,6 @@ using IdolFinder.API.Middlewares;
 using IdolFinder.Application;
 using IdolFinder.Application.Behaviors;
 using IdolFinder.Application.Configurations.Options;
-using IdolFinder.Application.Images.Endpoints;
 using IdolFinder.Application.Services;
 using IdolFinder.Core.Repositories;
 using IdolFinder.CrawData.Services;
@@ -61,9 +60,6 @@ namespace IdolFinder.API.Extensions
 
             services.Configure<ImageSourceOptions>(configuration.GetSection("ImageSource"));
             services.Configure<StorageOptions>(configuration.GetSection("Storage"));
-
-            services.AddScoped<LockettsEndpointHandler>();
-            services.AddScoped<AbcEndpointHandler>();
         }
 
         public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
